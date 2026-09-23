@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Wyatt Elswick — Painter</title>
+
+  <meta
+    name="description"
+    content="Wyatt Elswick is a painter working in San Francisco and Los Angeles."
+  >
+
+  <style>
+    :root {
+      --cream: #fffaf1;
+      --pink: #f7c9d8;
+      --blue: #c9ddf2;
+      --yellow: #f6e7a8;
+      --green: #c9dfc6;
+      --lavender: #dcd1ec;
+      --orange: #f3c6a5;
+      --ink: #242329;
+      --muted: #716d72;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 5vw;
+      background: rgba(255, 250, 241, 0.88);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.45;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 5vw 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-title {
+      max-width: 1100px;
+      font-size: clamp(70px, 13vw, 190px);
+      line-height: 0.84;
+      letter-spacing: -0.075em;
+      font-weight: 500;
+    }
+
+    .hero-title span {
+      display: block;
+    }
+
+    .hero-title .second {
+      margin-left: 12vw;
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      margin-top: 100px;
+    }
+
+    .hero-intro {
+      max-width: 430px;
+      font-size: 19px;
+      line-height: 1.45;
+    }
+
+    .location {
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: right;
+    }
+
+    /* GENERAL */
+
+    section {
+      padding: 130px 5vw;
+    }
+
+    .section-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 60px;
+    }
+
+    /* FEATURE */
+
+    .feature {
+      background: var(--pink);
+    }
+
+    .feature-inner {
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .feature-image {
+      width: 100%;
+      height: min(75vh, 850px);
+      background:
+        radial-gradient(circle at 25% 30%, #e69aad 0 9%, transparent 10%),
+        radial-gradient(circle at 75% 65%, #879ccf 0 15%, transparent 16%),
+        radial-gradient(circle at 50% 45%, #efc56e 0 19%, transparent 20%),
+        linear-gradient(135deg, #b7c8dd, #e7b2c1 45%, #f0d38e);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-image::after {
+      content: "PAINTING 01";
+      position: absolute;
+      bottom: 25px;
+      left: 30px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .feature-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding-top: 18px;
+      font-size: 14px;
+    }
+
+    /* GALLERY */
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 22px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .art {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .art-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      transition: transform 0.5s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .art:hover .art-image {
+      transform: scale(1.025);
+    }
+
+    .art:nth-child(1) {
+      grid-column: span 5;
+    }
+
+    .art:nth-child(2) {
+      grid-column: 7 / span 6;
+      margin-top: 120px;
+    }
+
+    .art:nth-child(3) {
+      grid-column: 2 / span 5;
+      margin-top: 40px;
+    }
+
+    .art:nth-child(4) {
+      grid-column: 8 / span 4;
+      margin-top: -50px;
+    }
+
+    .art:nth-child(5) {
+      grid-column: 5 / span 5;
+      margin-top: 100px;
+    }
+
+    .art:nth-child(6) {
+      grid-column: 1 / span 4;
+      margin-top: 40px;
+    }
+
+    .art:nth-child(7) {
+      grid-column: 7 / span 5;
+      margin-top: -20px;
+    }
+
+    .art-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 12px;
+      font-size: 13px;
+    }
+
+    /* PLACEHOLDER ART */
+
+    .p1 {
+      background:
+        radial-gradient(ellipse at 30% 25%, #d9829a 0 13%, transparent 14%),
+        radial-gradient(ellipse at 65% 65%, #6f91b9 0 20%, transparent 21%),
+        linear-gradient(140deg, #f2c7b8, #d9d5bd 50%, #aebedb);
+    }
+
+    .p2 {
+      background:
+        radial-gradient(ellipse at 60% 35%, #f2d36e 0 18%, transparent 19%),
+        radial-gradient(ellipse at 30% 75%, #9c83b8 0 16%, transparent 17%),
+        linear-gradient(45deg, #b8d4ca, #efc1c9 60%, #e8dca6);
+    }
+
+    .p3 {
+      background:
+        radial-gradient(ellipse at 40% 40%, #efb4a0 0 23%, transparent 24%),
+        radial-gradient(ellipse at 75% 70%, #7293ae 0 15%, transparent 16%),
+        linear-gradient(120deg, #d5d9c5, #c4b4cf);
+    }
+
+    .p4 {
+      background:
+        radial-gradient(ellipse at 65% 55%, #d77c83 0 22%, transparent 23%),
+        linear-gradient(160deg, #f0d8a4, #b9d0d7 55%, #c4aecb);
+    }
+
+    .p5 {
+      background:
+        radial-gradient(ellipse at 35% 30%, #809bbd 0 18%, transparent 19%),
+        radial-gradient(ellipse at 70% 70%, #edb38f 0 20%, transparent 21%),
+        linear-gradient(30deg, #e9d7ae, #c6c3d6);
+    }
+
+    .p6 {
+      background:
+        radial-gradient(ellipse at 55% 50%, #d9869a 0 24%, transparent 25%),
+        linear-gradient(135deg, #b6d1c3, #eed5a5 60%, #aab7d3);
+    }
+
+    .p7 {
+      background:
+        radial-gradient(ellipse at 30% 70%, #7794bb 0 17%, transparent 18%),
+        radial-gradient(ellipse at 70% 30%, #e8a5ad 0 22%, transparent 23%),
+        linear-gradient(130deg, #eed8a8, #c3d7c8);
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: var(--blue);
+    }
+
+    .about-grid {
+      max-width: 1400px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 10vw;
+      align-items: start;
+    }
+
+    .about-title {
+      font-size: clamp(50px, 7vw, 100px);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      font-weight: 500;
+    }
+
+    .about-text {
+      font-size: clamp(20px, 2.1vw, 30px);
+      line-height: 1.35;
+      max-width: 800px;
+    }
+
+    .about-meta {
+      margin-top: 55px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      font-size: 14px;
+    }
+
+    .meta-label {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 11px;
+      margin-bottom: 7px;
+    }
+
+    /* DRAWINGS */
+
+    .drawings {
+      background: var(--yellow);
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: var(--lavender);
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-title {
+      font-size: clamp(65px, 12vw, 175px);
+      line-height: 0.85;
+      letter-spacing: -0.075em;
+      font-weight: 500;
+    }
+
+    .email {
+      display: inline-block;
+      margin-top: 60px;
+      font-size: clamp(22px, 3vw, 42px);
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 4px;
+      transition: opacity 0.2s;
+    }
+
+    .email:hover {
+      opacity: 0.5;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: var(--lavender);
+      padding: 30px 5vw;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      nav {
+        padding: 18px 5vw;
+      }
+
+      .nav-links {
+        gap: 14px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding-top: 120px;
+        min-height: 90vh;
+      }
+
+      .hero-title {
+        font-size: 20vw;
+      }
+
+      .hero-title .second {
+        margin-left: 7vw;
+      }
+
+      .hero-bottom {
+        display: block;
+        margin-top: 70px;
+      }
+
+      .hero-intro {
+        font-size: 17px;
+      }
+
+      .location {
+        text-align: left;
+        margin-top: 30px;
+      }
+
+      section {
+        padding: 85px 5vw;
+      }
+
+      .section-label {
+        margin-bottom: 35px;
+      }
+
+      .feature-image {
+        height: 65vh;
+      }
+
+      .feature-caption {
+        display: block;
+      }
+
+      .feature-caption div:last-child {
+        margin-top: 6px;
+        color: var(--muted);
+      }
+
+      .gallery {
+        display: block;
+      }
+
+      .art {
+        margin: 0 0 55px !important;
+      }
+
+      .art-image {
+        aspect-ratio: 4 / 5;
+      }
+
+      .about-grid {
+        display: block;
+      }
+
+      .about-title {
+        margin-bottom: 50px;
+      }
+
+      .about-text {
+        font-size: 21px;
+      }
+
+      .about-meta {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .contact {
+        min-height: 65vh;
+      }
+
+      footer {
+        display: block;
+      }
+
+      footer div:last-child {
+        margin-top: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <a href="#top" class="nav-name">Wyatt Elswick</a>
+
+    <div class="nav-links">
+      <a href="#paintings">Paintings</a>
+      <a href="#drawings">Drawings</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <header class="hero" id="top">
+
+    <div class="hero-title">
+      <span>Wyatt</span>
+      <span class="second">Elswick</span>
+    </div>
+
+    <div class="hero-bottom">
+
+      <p class="hero-intro">
+        Painter working between observation and invention,
+        where figures, narratives, and landscapes emerge
+        from heavily worked painted surfaces.
+      </p>
+
+      <div class="location">
+        San Francisco<br>
+        Los Angeles
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- FEATURED WORK -->
+
+  <section class="feature">
+
+    <div class="feature-inner">
+
+      <div class="section-label">
+        Selected Work
+      </div>
+
+      <div class="feature-image"></div>
+
+      <div class="feature-caption">
+        <div>Untitled, 2026</div>
+        <div>Oil on canvas — placeholder</div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PAINTINGS -->
+
+  <section id="paintings">
+
+    <div class="section-label">
+      01 — Paintings
+    </div>
+
+    <div class="gallery">
+
+      <article class="art">
+        <div class="art-image p1"></div>
+        <div class="art-info">
+          <span>Untitled I</span>
+          <span>2026</span>
+        </div>
+      </article>
+
+      <article class="art">
+        <div class="art-image p2"></div>
+        <div class="art-info">
+          <span>Untitled II</span>
+          <span>2026</span>
+        </div>
+      </article>
+
+      <article class="art">
+        <div class="art-image p3"></div>
+        <div class="art-info">
+          <span>Untitled III</span>
+          <span>2025</span>
+        </div>
+      </article>
+
+      <article class="art">
+        <div class="art-image p4"></div>
+        <div class="art-info">
+          <span>Untitled IV</span>
+          <span>2025</span>
+        </div>
+      </article>
+
+      <article class="art">
+        <div class="art-image p5"></div>
+        <div class="art-info">
+          <span>Untitled V</span>
+          <span>2025</span>
+        </div>
+      </article>
+
+      <article class="art">
+        <div class="art-image p6"></div>
+        <div class="art-info">
+          <span>Untitled VI</span>
+          <span>2025</span>
+        </div>
+      </article>
+
+      <article class="art">
+        <div class="art-image p7"></div>
+        <div class="art-info">
+          <span>Untitled VII</span>
+          <span>2024</span>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section class="about" id="about">
+
+    <div class="section-label">
+      02 — About
+    </div>
+
+    <div class="about-grid">
+
+      <h2 class="about-title">
+        About<br>
+        Wyatt
+      </h2>
+
+      <div>
+
+        <p class="about-text">
+          Wyatt Elswick (B. 2004) is a painter working in
+          San Francisco and Los Angeles. His paintings
+          occupy a space between observation and invention;
+          where figures, narratives, and landscapes emerge
+          from and recede into heavily worked painted surfaces.
+        </p>
+
+        <p class="about-text" style="margin-top: 35px;">
+          His work has recently been featured in
+          <em>Heavy Batter: A Show on Absurdity</em>
+          at Cushion Works gallery.
+        </p>
+
+        <div class="about-meta">
+
+          <div>
+            <div class="meta-label">Education</div>
+            <div>California College of the Arts</div>
+            <div>BFA, expected May 2027</div>
+          </div>
+
+          <div>
+            <div class="meta-label">Based</div>
+            <div>San Francisco</div>
+            <div>Los Angeles</div>
+          </div>
+
+          <div>
+            <div class="meta-label">Practice</div>
+            <div>Painting</div>
+            <div>Drawing</div>
+          </div>
+
+          <div>
+            <div class="meta-label">Exhibition</div>
+            <div>Heavy Batter: A Show on Absurdity</div>
+            <div>Cushion Works</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DRAWINGS -->
+
+  <section class="drawings" id="drawings">
+
+    <div class="section-label">
+      03 — Drawings
+    </div>
+
+    <div class="gallery">
+
+      <article class="art">
+        <div class="art-image p4"></div>
+        <div class="art-info">
+          <span>Untitled Drawing I</span>
+          <span>2026</span>
+        </div>
+      </article>
+
+      <article class="art">
+        <div class="art-image p6"></div>
+        <div class="art-info">
+          <span>Untitled Drawing II</span>
+          <span>2025</span>
+        </div>
+      </article>
+
+      <article class="art">
+        <div class="art-image p2"></div>
+        <div class="art-info">
+          <span>Untitled Drawing III</span>
+          <span>2025</span>
+        </div>
+      </article>
+
+      <article class="art">
+        <div class="art-image p3"></div>
+        <div class="art-info">
+          <span>Untitled Drawing IV</span>
+          <span>2025</span>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contact">
+
+    <div>
+
+      <div class="section-label">
+        04 — Contact
+      </div>
+
+      <h2 class="contact-title">
+        Let's<br>
+        talk.
+      </h2>
+
+    </div>
+
+    <div>
+      <a
+        class="email"
+        href="mailto:welswick@cca.edu"
+      >
+        welswick@cca.edu
+      </a>
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div>
+      © 2026 Wyatt Elswick
+    </div>
+
+    <div>
+      Painter — San Francisco / Los Angeles
+    </div>
+
+  </footer>
+
+</body>
+</html>
